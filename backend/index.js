@@ -4,8 +4,11 @@ const body_parser = require("body-parser");
 const http = require("http");
 const morgan = require ("morgan");
 const cors = require ("cors");
+const connectDB = require("./src/db/config");
 
 require("dotenv").config();
+connectDB();
+
 
 const PORT = process.env.PORT;
 const BASE_URL = process.env.BASE_URL;
@@ -26,9 +29,4 @@ app.use(cors({
 app.use (express.json());
 app.use (morgan('dev'));
 const server = http.createServer(app);
-server.listen(PORT,()=>`this project is running on port : ${PORT}\n and the url is : ${BASE_URL}`)
-
-
-
-
-
+server.listen(PORT,()=>console.log(`this project is running on port : ${PORT}\n and the url is : ${BASE_URL}`))

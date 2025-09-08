@@ -1,13 +1,18 @@
 import React from 'react'
+import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+
 const Register = () => {
   const navigation = useNavigate();
+  const  [ name, setName ] = useState("");
 
-  const handleSignOut = () =>{
-    navigation("/dashboard");
-  }
+  const handleSignUp = () =>{
+    localStorage.setItem("userName", name);
+        navigation("/dashboard");
+
+  };
   return (
    <div
       style={{
@@ -36,6 +41,8 @@ const Register = () => {
           <input
             type="text"
             placeholder="Name"
+            value ={name}
+            onChange={ (e) => setName(e.target.value) }
             style={{
               width: "100%",
               padding: "10px",
@@ -86,7 +93,7 @@ const Register = () => {
             fontSize: "16px",
             fontWeight: "bold",
           }}
-         onClick={handleSignOut}
+         onClick={handleSignUp}
         >
           Sign Up
         </button>
